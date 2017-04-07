@@ -1,0 +1,53 @@
+/* CSS declarations go here */
+/* Custom Stylesheet */
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+	font-size: inherit;
+}
+
+
+.showSideNav {
+  padding-left: 300px;
+}
+
+@media only screen and (max-width : 992px) {
+  .showSideNav {
+    padding-left: 0;
+  }
+}
+
+
+.side-nav .userView {
+    position: relative;
+    padding: 32px 32px 0;
+    margin-bottom: 8px;
+}
+.side-nav .userView .background {
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+}
+.side-nav .userView>a {
+    height: auto;
+    padding: 0;
+}
+.side-nav a {
+    color: rgba(0,0,0,0.87);
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    height: 48px;
+    line-height: 48px;
+    padding: 0 32px;
+}
+
+.side-nav .userView .circle {
+    height: 64px;
+    width: 64px;
+}
