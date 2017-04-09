@@ -24,3 +24,4 @@ materialize:materialize
 planettraining:material-design-icons-font
 accounts-ui
 accounts-password
+iron:router

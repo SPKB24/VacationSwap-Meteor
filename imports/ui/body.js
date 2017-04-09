@@ -4,9 +4,15 @@ import { Template } from 'meteor/templating';
 
 import { Trips } from '../api/trips.js';
 
+import { Route } from './router.js';
+
 import './body.html';
 import './homepage.html';
 import './dashboard.html';
+import './assets/header.html'
+import './assets/footer.html'
+import './about.html'
+import './contact.html'
 
 
 Meteor.autorun(function () {
