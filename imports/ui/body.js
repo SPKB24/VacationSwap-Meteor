@@ -11,6 +11,7 @@ import './homepage.html';
 import './dashboard.html';
 import './assets/header.html'
 import './assets/footer.html'
+import './searchresults.html'
 import './about.html'
 import './contact.html'
 

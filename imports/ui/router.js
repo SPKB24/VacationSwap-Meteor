@@ -35,3 +35,7 @@ Router.route('/mytrips', function() {
   this.render('dashboard');
   Session.set('currentPage', Router.current().router.getName());
 });
+
+Router.route('/search', function() {
+ this.render('search');
+});
