@@ -106,6 +106,9 @@ footer.page-footer {
   color: white;
   padding-left: 20px;
   box-shadow: 0 1px 0 0 #000;
+}
+
+#search_location:focus {
   background-color: rgba(0, 0, 0, 0.3);
 }
 
@@ -124,6 +127,21 @@ footer.page-footer {
  box-shadow: 0 1px 0 0 #000;
 }
 
+#search {
+  color: white;
+}
+
+#searchBtn {
+  height: 45px;
+  width: 45px;
+  margin-top: 15px;
+  margin-left: 10px;
+}
+
+#searchIcon {
+  margin-top: -5px;
+}
+
 /* SEARCH BAR CSS END ****/
 
 
@@ -134,12 +152,4 @@ footer.page-footer {
 #mainTitle {
   color: white;
   font-weight: 400;
-}
-
-.search-icon {
-  margin-top: 2px;
-}
-
-#search {
-  color: white;
 }

@@ -1,6 +1,6 @@
 <template name="homepage">
 
-<div class="section no-pad-bot" id="content" style="background-image:url('https://s-media-cache-ak0.pinimg.com/originals/69/a3/99/69a399353d0001cba84fc476ecda3f45.jpg')">
+<div class="section no-pad-bot" id="content" style="background-image:url('https://s-media-cache-ak0.pinimg.com/originals/69/a3/99/69a399353d0001cba84fc476ecda3f45.jpg');background-repeat: no-repeat;background-size: cover">
   <div class="container">
     <br><br>
     <h1 class="center" id="mainTitle">VacationSwap</h1>
@@ -8,11 +8,10 @@
     <div class="row">
       <form class="col s8 push-s2" id="searchRow">
         <div class="row" id="search-row">
-          <div class="input-field col s11">
+          <div class="input-field col s11" style="float:left;">
             <input id="search_location" type="text">
-            <label for="search_location">Search Here</label>
           </div>
-          <a class="waves-effect waves-light btn-flat btn-large col s1"><i class="material-icons center white-text">search</i></a>
+          <a id='searchBtn' class="waves-effect waves-light btn-flat btn-large col s1"><i id="searchIcon" class="material-icons center white-text">search</i></a>
         </div>
       </form>
     </div>
@@ -23,3 +22,4 @@
 {{> footer}}
 
 </template>
+  
