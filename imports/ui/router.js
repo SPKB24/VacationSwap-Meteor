@@ -23,17 +23,14 @@ Router.route('/', function() {
 
 Router.route('/about', function() {
   this.render('about');
-  Session.set('currentPage', Router.current().router.getName());
 });
 
 Router.route('/contact', function() {
   this.render('contact');
-  Session.set('currentPage', Router.current().router.getName());
 });
 
 Router.route('/mytrips', function() {
   this.render('dashboard');
-  Session.set('currentPage', Router.current().router.getName());
 });
 
 Router.route('/search', function() {
