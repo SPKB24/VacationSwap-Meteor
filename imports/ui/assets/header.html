@@ -6,8 +6,10 @@
         {{#if currentUser}}
           <li class="header-nav nav-item"><a href="/mytrips">New Itinerary</a></li>
           <li class="header-nav nav-item"><a href="/mytrips">My Trips</a></li>
+          <li class="header-nav nav-item"><a style="cursor:text">|</a></li>
+          <li class="header-nav nav-item" id="headerProfile"><a href="/mytrips">My Profile</a></li>
         {{/if}}
-        <li class="header-nav nav-item"><a href="#">{{> loginButtons}}</a></li>
+        <li class="header-nav nav-item" id="headerSignin"><a href="#">{{> loginButtons}}</a></li>
       </ul>
 
     </div>
