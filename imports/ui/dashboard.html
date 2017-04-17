@@ -2,17 +2,22 @@
 
     {{> header}}
 
-    <main class="container {{#if currentUser}}showSideNav{{/if}}">
+    <main class="container">
       <div class="section">
+
+        {{#if currentUser}}
           <h2 class="header">My Trips </h2>
           <div class="row">
-              <a class="waves-effect waves-light btn new-trip"><i class="material-icons left">add</i>Create a New Trip</a>
+            <a id="myTripsNew" class="waves-effect waves-light btn new-trip"><i class="material-icons left">add</i>Create a New Trip</a>
           </div>
           <div class="row">
               {{#each trips}}
                 {{> trip}}
               {{/each}}
           </div>
+        {{else}}
+          {{> signInError}}
+        {{/if}}
       </div>
     </main>
 
