@@ -49,7 +49,6 @@ Template.homepage.rendered = function() {
   };
 }
 
-
 Template.dashboard.events({
   'click .new-trip'(event) {
     // Prevent default browser form submit

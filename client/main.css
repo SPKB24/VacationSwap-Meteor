@@ -144,6 +144,13 @@ footer.page-footer {
 
 /* SEARCH BAR CSS END ****/
 
+#myTripsNew {
+  margin-left: 10px;
+}
+
+.error {
+  color: red;
+}
 
 #content {
   height: 100%;
