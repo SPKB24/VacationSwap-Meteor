@@ -26,3 +26,8 @@ accounts-ui
 accounts-password
 iron:router
 mrt:googlemaps
+accounts-google
+google-config-ui
+accounts-facebook
+facebook-config-ui
+useraccounts:materialize
