@@ -41,11 +41,49 @@ Template.homepage.rendered = function() {
     google.maps.event.addListener(autocomplete, 'place_changed', function() {
 
        // Get the place details from the autocomplete object.
-       var place = autocomplete.getPlace();
+      const place = autocomplete.getPlace();
 
-       console.log("place: " + JSON.stringify(place) );
+      console.log(place);
+
+      function extractFromAdress(components, type){
+        for (var i=0; i<components.length; i++)
+            for (var j=0; j<components[i].types.length; j++)
+                if (components[i].types[j]==type) return components[i].long_name;
+        return "";
+      }
+
+      // Optional code for getting address info
+      var postCode = extractFromAdress(place.address_components, "postal_code");
+      var street = extractFromAdress(place.address_components, "route");
+      var town = extractFromAdress(place.address_components, "locality");
+      var country = extractFromAdress(place.address_components, "country");
+
+      var lat = place.geometry.location.lat();
+      var long = place.geometry.location.lng();
+      // console.log(lat);
+      // console.log(long);
+
+      var buildPlaceSearch = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?" +
+      "location=" + lat + "," + long + "&radius=500&&" +
+      "key=AIzaSyCO9_fZmjH5p9XEs43MA_NG4ZEnicbRGHM";
+
+      // Need to use crossorigin to fix the "No Access-Control-Allow-Origin header
+      // is present on the requested resource" shit error
+      var testo = "https://crossorigin.me/" + buildPlaceSearch;
+      var photoReference;
+      var photoReferenceID;
+
+      $.getJSON(testo, function(data) {
+        // console.log(data);
+        photoReference = data;
+        photoReferenceID = photoReference.results[0].photos[0].photo_reference;
+        console.log(photoReferenceID);
+        var photoLink = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" + photoReferenceID
+        + "&key=AIzaSyCO9_fZmjH5p9XEs43MA_NG4ZEnicbRGHM"
+        // Actual link to photo
+        console.log(photoLink);
+      });
     });
-
   };
 }
 
