@@ -145,6 +145,33 @@ footer.page-footer {
 
 /* SEARCH BAR CSS END ****/
 
+
+/** User Profile Page **/
+
+.profile_pic {
+}
+
+.profile_username {
+  font-size: 30pt;
+  font-weight: 600px;
+  margin-top: 0px;
+}
+
+.profile_other {
+  font-size: 12pt;
+  font-weight: 400px;
+  color: gray;
+  margin-top: -40px;
+}
+
+.sectionHeader {
+  font-size: 12pt;
+  font-weight: 800;
+  padding-top: 20px;
+}
+
+/* User Profile end ****/
+
 #myTripsNew {
   margin-left: 10px;
 }
