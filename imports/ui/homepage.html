@@ -8,12 +8,7 @@
 
       <div class="row">
         <form class="col s8 push-s2" id="searchRow">
-          <div class="row" id="search-row">
-            <div class="input-field col s11" style="float:left;">
-              <input id="search_location" type="text">
-            </div>
-            <a id='searchBtn' href="/search" class="waves-effect waves-light btn-flat btn-large col s1"><i id="searchIcon" class="material-icons center white-text">search</i></a>
-          </div>
+          {{> googleSearchBar}}
         </form>
       </div>
       <br><br>
@@ -21,4 +16,13 @@
   </div>
 
   {{> footer}}
+</template>
+
+<template name="googleSearchBar">
+  <div class="row" id="search-row">
+    <div class="input-field col s11" style="float:left;">
+      <input id="search_location" type="text">
+    </div>
+    <a id='searchBtn' href="/search" class="waves-effect waves-light btn-flat btn-large col s1"><i id="searchIcon" class="material-icons center white-text">search</i></a>
+  </div>
 </template>
