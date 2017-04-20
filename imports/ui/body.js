@@ -148,6 +148,7 @@ Template.userprofile.helpers({
 // using email, Google, or Facebook.
 function getUserName() {
   var username;
+
   try {
     username = Meteor.user().profile.name;
   } catch (TypeError) {
@@ -162,7 +163,18 @@ function getUserName() {
 
 // Try and get profile pic, otherwise use default image
 function getImageUrl() {
-  // return "http://4.bp.blogspot.com/-zsbDeAUd8aY/US7F0ta5d9I/AAAAAAAAEKY/UL2AAhHj6J8/s1600/facebook-default-no-profile-pic.jpg";
-  // return "https://graph.facebook.com/10206946227812450/picture?type=large"
-  return "https://graph.facebook.com/100002248789806/picture?type=large"
+  var service = Meteor.user().services;
+
+  if (service.google) {
+    console.log("Is Google Account");
+    return service.google.picture;
+
+  } else if (service.facebook) {
+    console.log("Is Facebook Account");
+    return "https://graph.facebook.com/" + service.facebook.id + "/picture?type=large";
+  } else {
+    // Default image incase user isn't using Google or Facebook login
+    console.log("Is Email Account");
+    return "images/default-profile-pic.jpg";
+  }
 }
