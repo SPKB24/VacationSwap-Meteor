@@ -26,6 +26,15 @@ Meteor.autorun(function () {
   }
 });
 
+Template.homepage.events({
+  'keypress #search_location': function(e) {
+    if(e.keyCode ==13) {
+      Router.go("/search?custom=" + document.getElementById('search_location').value);
+      return false;
+    }
+  }
+});
+
 Template.googleSearchBar.rendered = function() {
   GoogleMaps.init({
             'key': Meteor.settings.public.googleApiKey,
@@ -95,11 +104,56 @@ Template.googleSearchBar.rendered = function() {
   );
 };
 
+
+Template.search_page_bar.rendered = function() {
+  GoogleMaps.init({
+            'key': Meteor.settings.public.googleApiKey,
+            'language': 'en',
+            'libraries': 'places'
+    },
+    function () {
+
+      // input = document.getElementById('search_location');
+      // autocomplete = new google.maps.places.Autocomplete(input);
+      var autocomplete = new google.maps.places.Autocomplete(
+        (document.getElementById('search_page_top_bar')),{types: ['geocode'] }
+      );
+
+      // When the user selects an address from the dropdown,
+      google.maps.event.addListener(autocomplete, 'place_changed', function() {
+
+        // Get the place details from the autocomplete object.
+        const place = autocomplete.getPlace();
+
+        console.log(place);
+        function extractFromAdress(components, type){
+          for (var i=0; i<components.length; i++)
+              for (var j=0; j<components[i].types.length; j++)
+                  if (components[i].types[j]==type) return components[i].long_name;
+          return "";
+        }
+
+        // Optional code for getting address info
+        var postCode = extractFromAdress(place.address_components, "postal_code");
+        var street = extractFromAdress(place.address_components, "route");
+        var town = extractFromAdress(place.address_components, "locality");
+        var country = extractFromAdress(place.address_components, "country");
+        var state = extractFromAdress(place.address_components, "administrative_area_level_1");
+
+        var lat = place.geometry.location.lat();
+        var long = place.geometry.location.lng();
+
+        // Create search url
+        console.log(town);
+        console.log(state);
+        Router.go('/search?city=' + town + '&state=' + state);
+      });
+    }
+  );
+};
+
 Template.search.helpers({
   params() {
-    var state = "urmom";
-    var town = "me leg";
-    console.log("my leg");
     console.log(Router.current().params);
     return town;
   },

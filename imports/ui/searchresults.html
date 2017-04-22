@@ -2,7 +2,14 @@
 
   {{> header}}
 
-  <main class="row container">
+  <div class="row container">
+    <!-- <div class="input-field col s12 " >
+          <input placeholder="Search here" id="search_location" type="text" class="validate">
+          <label for="first_name">First Name</label>
+    </div> -->
+
+    {{> search_page_bar}}
+
     <div class="col s12">
       <div class="row">
         <div class="col s4 m4">
@@ -102,7 +109,16 @@
     <div class="col s6"> -->
 
     </div>
-  </main>
+  </div>
 
   {{> footer}}
+</template>
+
+<template name="search_page_bar">
+  <div class="row">
+    <div class="input-field col s12" style="float:left;">
+      <input class="grey lighten-3" id="search_page_top_bar" placeholder="Search for a location" type="text">
+    </div>
+    <!-- <a id='searchBtn' href="/search" class="waves-effect waves-light btn-flat btn-large col s1"><i id="searchIcon" class="material-icons center white-text">search</i></a> -->
+  </div>
 </template>
