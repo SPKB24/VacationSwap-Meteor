@@ -26,6 +26,15 @@ Meteor.autorun(function () {
   }
 });
 
+Template.homepage.events({
+  'keypress #search_location': function(e) {
+    if(e.keyCode ==13) {
+      Router.go("/search?custom=" + document.getElementById('search_location').value);
+      return false;
+    }
+  }
+});
+
 Template.googleSearchBar.rendered = function() {
   GoogleMaps.init({
             'key': Meteor.settings.public.googleApiKey,
@@ -97,9 +106,6 @@ Template.googleSearchBar.rendered = function() {
 
 Template.search.helpers({
   params() {
-    var state = "urmom";
-    var town = "me leg";
-    console.log("my leg");
     console.log(Router.current().params);
     return town;
   },
