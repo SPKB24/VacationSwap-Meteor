@@ -33,6 +33,7 @@ Template.googleSearchBar.rendered = function() {
             'libraries': 'places'
     },
     function () {
+
       // input = document.getElementById('search_location');
       // autocomplete = new google.maps.places.Autocomplete(input);
       var autocomplete = new google.maps.places.Autocomplete(
@@ -164,17 +165,19 @@ function getUserName() {
 // Try and get profile pic, otherwise use default image
 function getImageUrl() {
   var service = Meteor.user().services;
+  var imageToUse;
 
   if (service.google) {
     console.log("Is Google Account");
-    return service.google.picture;
-
+    imageToUse = service.google.picture;
   } else if (service.facebook) {
     console.log("Is Facebook Account");
-    return "https://graph.facebook.com/" + service.facebook.id + "/picture?type=large";
+    imageToUse = "https://graph.facebook.com/" + service.facebook.id + "/picture?type=large";
   } else {
     // Default image incase user isn't using Google or Facebook login
     console.log("Is Email Account");
-    return "images/default-profile-pic.jpg";
+    imageToUse = "images/default-profile-pic.jpg";
   }
+
+  return "background-image: url('" + imageToUse + "')";
 }

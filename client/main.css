@@ -150,16 +150,20 @@ footer.page-footer {
 
 /** User Profile Page **/
 
-.profile_pic {
+#profile_pic {
+    width: 100%;
+    height: 175px;
+    background-position: center center;
+    background-size: cover;
 }
 
-.profile_username {
+#profile_username {
   font-size: 30pt;
   font-weight: 600px;
   margin-top: 0px;
 }
 
-.profile_other {
+#profile_other {
   font-size: 12pt;
   font-weight: 400px;
   color: gray;
@@ -167,6 +171,8 @@ footer.page-footer {
 }
 
 .sectionHeader {
+  margin-left: 10px;
+  margin-bottom: -2px;
   font-size: 12pt;
   font-weight: 800;
   padding-top: 20px;

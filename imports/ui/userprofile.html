@@ -7,10 +7,12 @@
       {{#if currentUser}}
         <!-- Profile pic and information -->
         <div class="row">
-          <img class="col s2 z-depth-3 profile_pic" src="{{ picture }}" alt="profilePic">
-          <div class="col s10">
-            <p class="profile_username">{{ username }}</p>
-            <p class="profile_other">Some other information</p>
+          <div class="imgContainer col s12 m2 l2">
+            <div id="profile_pic" class="z-depth-2" style="{{ picture }}"></div>
+          </div>
+          <div class="col s12 m10 l10">
+            <p id="profile_username">{{ username }}</p>
+            <p id="profile_description">Some other information</p>
             <div class="chip">adventurous</div>
             <div class="chip">daredevil</div>
             <div class="chip">outgoing</div>
@@ -24,7 +26,7 @@
           </p>
           <div class="profile_trips">
             {{#each trips}}
-              <div class="col s3">
+              <div class="col s12 m6 l3">
                 <div class="card">
                   <div class="card-image waves-effect waves-block waves-light">
                     <img class="activator responsive-img" src="https://media-cdn.tripadvisor.com/media/photo-s/09/8d/77/5e/carillon-miami-beach.jpg">
