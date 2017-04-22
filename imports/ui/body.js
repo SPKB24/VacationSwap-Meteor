@@ -60,11 +60,15 @@ Template.googleSearchBar.rendered = function() {
         var street = extractFromAdress(place.address_components, "route");
         var town = extractFromAdress(place.address_components, "locality");
         var country = extractFromAdress(place.address_components, "country");
+        var state = extractFromAdress(place.address_components, "administrative_area_level_1");
 
         var lat = place.geometry.location.lat();
         var long = place.geometry.location.lng();
-        // console.log(lat);
-        // console.log(long);
+
+        // Create search url
+        console.log(town);
+        console.log(state);
+        Router.go('/search?city=' + town + '&state=' + state);
 
         var buildPlaceSearch = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?" +
         "location=" + lat + "," + long + "&radius=500&&" +
@@ -90,6 +94,16 @@ Template.googleSearchBar.rendered = function() {
     }
   );
 };
+
+Template.search.helpers({
+  params() {
+    var state = "urmom";
+    var town = "me leg";
+    console.log("my leg");
+    console.log(Router.current().params);
+    return town;
+  },
+});
 
 Template.dashboard.helpers({
   trips() {
