@@ -18,6 +18,7 @@
   }
 }
 
+
 /** HEADER **/
 nav {
   background-color: black;
@@ -190,9 +191,28 @@ footer.page-footer {
 
 #content {
   height: 100%;
+  background-image: url('images/background.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 #mainTitle {
+  font-size: 5vw;
   color: white;
   font-weight: 400;
+}
+
+@media screen and (max-width: 600px) {
+
+}
+
+@media screen and (max-width: 992px) {
+  #mainTitle {
+    visibility: hidden;
+    clear: both;
+    float: left;
+    margin: 10px auto 5px 20px;
+    width: 28%;
+    display: none;
+  }
 }
