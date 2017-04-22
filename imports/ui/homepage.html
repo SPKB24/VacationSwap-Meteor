@@ -1,13 +1,17 @@
 <template name="homepage">
   {{> header}}
 
-  <div class="section no-pad-bot" id="content" style="background-image:url('https://s-media-cache-ak0.pinimg.com/originals/69/a3/99/69a399353d0001cba84fc476ecda3f45.jpg');background-repeat: no-repeat;background-size: cover">
+  <div class="section no-pad-bot" id="content">
     <div class="container">
       <br><br>
-      <h1 class="center" id="mainTitle">VacationSwap</h1>
+      <div class="row">
+        <div class="container center col s0 push-s1 m8 push-m2 l8 push-l2">
+          <h2 class="" id="mainTitle">VacationSwap</h2>
+        </div>
+      </div>
 
       <div class="row">
-        <form class="col s8 push-s2" id="searchRow">
+        <form class="col s10 push-s1 l8 push-l2" id="searchRow">
           {{> googleSearchBar}}
         </form>
       </div>
@@ -20,8 +24,8 @@
 
 <template name="googleSearchBar">
   <div class="row" id="search-row">
-    <div class="input-field col s12" style="float:left;">
-      <input id="search_location" placeholder="Search for a location" type="text">
+    <div class="input-field col s12 m12 l12">
+      <input id="search_location" class="homepageSearch" placeholder="Search for a location" type="text">
     </div>
     <!-- <a id='searchBtn' href="/search" class="waves-effect waves-light btn-flat btn-large col s1"><i id="searchIcon" class="material-icons center white-text">search</i></a> -->
   </div>
