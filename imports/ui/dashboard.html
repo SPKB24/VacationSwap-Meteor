@@ -1,18 +1,29 @@
 <template name="dashboard">
-    <div class="container {{#if currentUser}}showSideNav{{/if}}">
+
+    {{> header}}
+
+    <main style="z-index:auto" class="container">
       <div class="section">
+
+        {{#if currentUser}}
           <h2 class="header">My Trips </h2>
           <div class="row">
-              <a class="waves-effect waves-light btn new-trip"><i class="material-icons left">add</i>Create a New Trip</a>
+            <a id="myTripsNew" class="waves-effect waves-light btn new-trip"><i class="material-icons left">add</i>Create a New Trip</a>
           </div>
           <div class="row">
               {{#each trips}}
                 {{> trip}}
               {{/each}}
           </div>
+        {{else}}
+          {{> signInError}}
+        {{/if}}
       </div>
-    </div>
+    </main>
+
+    {{> footer}}
 </template>
+
 <template name="trip">
     <div class="col s6">
         <div class="card">

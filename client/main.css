@@ -19,6 +19,52 @@
 }
 
 
+/** HEADER **/
+nav {
+  background-color: black;
+  opacity: 0.9;
+}
+.nav-wrapper {
+  padding-left: 20px;
+}
+template {
+  height: 100%;
+}
+
+/** FOOTER **/
+html {
+  height: 100%;
+}
+body {
+  height: 100%;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+main {
+  flex: 1 0 auto;
+  z-index: -1;
+}
+footer.page-footer {
+  margin-top: 0;
+  /*opacity: 0.8;*/
+  background-color: black;
+}
+.footer-copyright {
+  margin-top: -15px;
+  box-shadow: 0 1px 0 0 #FFFFFF;
+}
+.footer-nav {
+  padding-left: 20px;
+}
+
+.nav-item {
+  opacity: 0.8;
+}
+.nav-item:hover {
+  opacity: 1;
+}
+
 .side-nav .userView {
     position: relative;
     padding: 32px 32px 0;
@@ -33,7 +79,7 @@
     left: 0;
     z-index: -1;
 }
-.side-nav .userView>a {
+.side-nav .userView > a {
     height: auto;
     padding: 0;
 }
@@ -50,4 +96,123 @@
 .side-nav .userView .circle {
     height: 64px;
     width: 64px;
+}
+
+/**** SEARCH BAR CSS */
+
+#searchRow {
+  padding-top: 175px;
+}
+
+#search_location {
+  color: rgba(255, 255, 255, 0.5);
+  padding-left: 20px;
+  box-shadow: 0 1px 0 0 #000;
+  background: linear-gradient(to left, rgba(0,0,0,0), rgba(0,0,0,0.3));
+}
+
+#search_location:focus {
+  background-color: rgba(0, 0, 0, 0.3);
+  color: white;
+}
+
+/* label color */
+.input-field label {
+ color: #FFFFFF;
+ opacity: 0.7;
+}
+/* label focus color */
+.input-field input[type=text]:focus + label {
+ color: #FFFFFF;
+}
+/* label underline focus color */
+.input-field input[type=text]:focus {
+ border-bottom: 1px solid #FFFFFF;
+ box-shadow: 0 1px 0 0 #000;
+}
+
+#search {
+  color: white;
+}
+
+#searchBtn {
+  height: 45px;
+  width: 45px;
+  margin-top: 15px;
+  margin-left: 10px;
+}
+
+#searchIcon {
+  margin-top: -5px;
+}
+
+/* SEARCH BAR CSS END ****/
+
+
+/** User Profile Page **/
+
+#profile_pic {
+    width: 100%;
+    height: 175px;
+    background-position: center center;
+    background-size: cover;
+}
+
+#profile_username {
+  font-size: 30pt;
+  font-weight: 600px;
+  margin-top: 0px;
+}
+
+#profile_other {
+  font-size: 12pt;
+  font-weight: 400px;
+  color: gray;
+  margin-top: -40px;
+}
+
+.sectionHeader {
+  margin-left: 10px;
+  margin-bottom: -2px;
+  font-size: 12pt;
+  font-weight: 800;
+  padding-top: 20px;
+}
+
+/* User Profile end ****/
+
+#myTripsNew {
+  margin-left: 10px;
+}
+
+.error {
+  color: red;
+}
+
+#content {
+  height: 100%;
+  background-image: url('images/background.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#mainTitle {
+  font-size: 5vw;
+  color: white;
+  font-weight: 400;
+}
+
+@media screen and (max-width: 600px) {
+
+}
+
+@media screen and (max-width: 992px) {
+  #mainTitle {
+    visibility: hidden;
+    clear: both;
+    float: left;
+    margin: 10px auto 5px 20px;
+    width: 28%;
+    display: none;
+  }
 }

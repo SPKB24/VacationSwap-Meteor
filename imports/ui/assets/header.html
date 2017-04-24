@@ -1,0 +1,16 @@
+<template name="header">
+
+  <nav id="header" class="lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo">VacationSwap</a>
+      <ul class="right hide-on-med-and-down headerContent">
+        {{#if currentUser}}
+          <li class="header-nav nav-item" style="background: rgba(255, 255, 255, 0.8);"><a style="color: black;" href="/search">New Itinerary</a></li>
+          <li class="header-nav nav-item"><a style="cursor:text"></a></li>
+          <li class="header-nav nav-item" id="headerProfile"><a href="/userprofile">My Profile</a></li>
+        {{/if}}
+        <li class="header-nav nav-item" id="headerSignin"><a href="#">{{> loginButtons}}</a></li>
+      </ul>
+    </div>
+  </nav>
+
+</template>
