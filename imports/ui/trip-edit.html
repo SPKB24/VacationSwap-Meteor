@@ -1,0 +1,131 @@
+<template name="tripEdit">
+    {{> header}}
+
+    <main class="container" style="z-index: auto;">
+        <div class="row">
+            <div class="col s12 m12">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="https://media-cdn.tripadvisor.com/media/photo-s/09/8d/77/5e/carillon-miami-beach.jpg" style="height: 118px;">
+                        <span class="card-title">
+                            <a class="editTitle white-text waves-effect waves-teal btn-flat btn-large"><i class="material-icons right">edit</i>{{title}}</a>
+                        </span>
+                    </div>
+                    <div class="card-content">
+                        <ul class="collapsible active" data-collapsible="accordion">
+                            {{#each days}}
+                            <li>
+                                <div class="collapsible-header active" data-daynumber="{{@index}}"><i class="material-icons">date_range</i>{{date}}</div>
+                                <div class="collapsible-body">
+                                    <div class="row center-align">
+                                        <a class="newEvent waves-effect waves-light btn"><i class="material-icons left">add</i>New Event</a>
+                                    </div>
+                                    <ul class="collection">
+                                        {{#let dayNumber=@index}}
+                                        {{#each this.events}}
+                                        <!-- {{> eventEdit dayNumber=dayNumber eventId=@index}} -->
+                                            <li class="collection-item avatar">
+                                              <i class="material-icons circle green">folder</i>
+                                              <span class="title">{{title}}</span>
+                                              <p>{{notes}}</p>
+                                              <a data-eventid="{{@index}}" class="editEvent secondary-content waves-effect waves-light btn">
+                                                  <i class="material-icons">edit</i>
+                                              </a>
+                                            </li>
+                                        {{/each}}
+                                        {{/let}}
+                                    </ul>
+
+                                </div>
+                            </li>
+                            {{/each}}
+                        </ul>
+                        <a class="newDay waves-effect waves-light btn"><i class="material-icons left">add</i>New Day</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal Structure -->
+    <div id="editTitleModal" class="modal">
+        <div class="modal-content">
+            <h4>Update Your Trip Details</h4>
+            <div class="row">
+                <form class="col s12">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="title" type="text" class="validate" value="{{title}}">
+                            <label for="title" class="active">Trip Name</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="startDate" type="text" class="validate" value="{{startDate}}">
+                            <label for="startDate" class="active">Trip Start Date</label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a class="editTitleFinished modal-action modal-close waves-effect waves-green btn">Save Changes</a>
+            <a class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+        </div>
+    </div>
+    {{> eventEdit}}
+
+    {{> footer}}
+</template>
+
+<template name="eventEdit">
+    <div id="eventModal" class="modal">
+        <div class="modal-content">
+            <h4>Edit Event</h4>
+            <div class="row">
+                <form class="col s12">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <select id="eventCategory">
+                              <option value="Activity">Activity</option>
+                              <option value="Info">Info</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="eventTitle" type="text" class="validate" value="{{selectedEvent.title}}">
+                            <label for="eventTitle" class="active">Title</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <textarea id="eventNotes" class="materialize-textarea">{{selectedEvent.notes}}</textarea>
+                            <label for="eventNotes" class="active">Notes</label>
+                        </div>
+                    </div>
+
+                    <div class="row {{#if hideTimePriceTags}}hide{{/if}}">
+                        <div class="input-field col s4">
+                            <input id="eventStartDate" type="text" class="validate" value="{{selectedEvent.startDate}}">
+                            <label for="eventStartDate" class="active">Starts At</label>
+                        </div>
+                        <div class="input-field col s4">
+                            <input id="eventStartDateTime" type="text" class="validate" value="{{selectedEvent.startDateTime}}">
+                            <label for="eventStartDateTime" class="active">Time</label>
+                        </div>
+                        <div class="input-field col s4">
+                            <input id="eventDuration" type="text" class="validate" value="{{selectedEvent.duration}}">
+                            <label for="eventDuration" class="active">Duration</label>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a class="newEventFinished modal-action modal-close waves-effect waves-green btn"><i class="material-icons right">done</i>Done Editing</a>
+            <a class="deleteEvent modal-action modal-close waves-effect waves-green btn-flat"><i class="material-icons right">delete</i>Delete Event</a>
+        </div>
+    </div>
+</template>

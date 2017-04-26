@@ -31,3 +31,7 @@ accounts-facebook@1.1.1
 facebook-config-ui@1.0.0
 useraccounts:materialize
 autopublish@1.0.7
+session
+richsilv:pikaday
+jquery
+reactive-dict
