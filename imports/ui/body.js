@@ -171,9 +171,11 @@ Template.dashboard.helpers({
 });
 
 Template.userprofile.events({
-  // 'click .deleteMe'(event) {
-  //   Trips.remove(this._id);
-  // },
+  'click .deleteMe'(event) {
+    if (confirm("Are you sure?")) {
+      Trips.remove(this._id);
+    }
+  },
   'click .myDetails'(event) {
     event.preventDefault();
     Router.go('/trip/view/' + this._id);
@@ -413,5 +415,12 @@ Template.tripDetail.helpers({
 Template.tripDetail.events({
   'click .editTrip'(event) {
     Router.go('/trip/edit/' + this._id);
+  },
+  'click .deleteMe'(event) {
+    if (confirm("Are you sure?")) {
+      var tripId = this._id;
+      Router.go("/userprofile");
+      Trips.remove(this._id);
+    }
   },
 });
