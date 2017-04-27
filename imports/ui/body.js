@@ -30,6 +30,42 @@ Meteor.autorun(function () {
   }
 });
 
+Template.header.events({
+  'click #newItinerary'(event) {
+    // Prevent default browser form submit
+    event.preventDefault();
+
+    // Get value from form element
+    // const target = event.target;
+    // const text = target.text.value;
+
+    // Make sure the user is logged in before inserting a task
+    if (!Meteor.userId()) {
+      throw new Meteor.Error('not-authorized');
+    }
+
+    // Insert a task into the collection
+    Trips.insert({
+        title: 'My Trip',
+        startDate: '',
+        picture: '',
+        createdAt: new Date(), // current time
+        owner: Meteor.userId(),
+        days: [
+            {
+                date: 'Day 1',
+                dayTitle: null,
+                events: []
+            }
+        ]
+    }, function(err, objectId){
+        if (err) return;
+        console.log("Trying to do the thing : " + objectId);
+        Router.go('/trip/edit/' + objectId);
+    });
+  },
+});
+
 Template.homepage.events({
   'keypress #search_location': function(e) {
     if(e.keyCode ==13) {
