@@ -50,3 +50,11 @@ Router.route('/trip/edit/:_id', function () {
         }
     });
 });
+
+Router.route('/trip/view/:_id', function () {
+    this.render('tripDetail', {
+        data: function () {
+            return Trips.findOne({_id: this.params._id});
+        }
+    });
+});

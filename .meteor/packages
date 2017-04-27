@@ -22,7 +22,6 @@ fourseven:scss
 materialize:materialize
 planettraining:material-design-icons-font
 accounts-ui@1.1.9
-accounts-password@1.3.5
 iron:router
 mrt:googlemaps
 accounts-google@1.1.2
@@ -35,3 +34,4 @@ session
 richsilv:pikaday
 jquery
 reactive-dict
+accounts-password

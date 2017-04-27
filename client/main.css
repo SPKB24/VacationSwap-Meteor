@@ -117,16 +117,16 @@ footer.page-footer {
 }
 
 /* label color */
-.input-field label {
+.input-field-seach label {
  color: #FFFFFF;
  opacity: 0.7;
 }
 /* label focus color */
-.input-field input[type=text]:focus + label {
+.input-field-seach input[type=text]:focus + label {
  color: #FFFFFF;
 }
 /* label underline focus color */
-.input-field input[type=text]:focus {
+.input-field-seach input[type=text]:focus {
  border-bottom: 1px solid #FFFFFF;
  box-shadow: 0 1px 0 0 #000;
 }
@@ -173,10 +173,16 @@ footer.page-footer {
 
 .sectionHeader {
   margin-left: 10px;
-  margin-bottom: -2px;
+  margin-bottom: 0px;
   font-size: 12pt;
   font-weight: 800;
   padding-top: 20px;
+}
+
+.new-trip {
+  margin-left: 20px;
+  margin-top: 10px;
+  margin-bottom: -10px;
 }
 
 /* User Profile end ****/
@@ -185,8 +191,25 @@ footer.page-footer {
   margin-left: 10px;
 }
 
+.collapsible-header {
+}
+
+.active {
+  /*transition: font-weight 0.5s ease;
+  font-weight: 600;*/
+}
+
 .error {
   color: red;
+}
+
+.noTripErrorDiv {
+  margin-top: 20px;
+}
+
+.noTripError {
+  color: gray;
+  font-style: oblique;
 }
 
 #content {

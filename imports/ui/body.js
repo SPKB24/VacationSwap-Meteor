@@ -16,6 +16,7 @@ import './assets/footer.html'
 import './searchresults.html'
 import './userprofile.html'
 import './trip-edit.html'
+import './trip-details.html'
 import './about.html'
 import './contact.html'
 
@@ -164,12 +165,19 @@ Template.search.helpers({
 
 Template.dashboard.helpers({
   trips() {
-      // Show newest trips at the top
-      return Trips.find({}, { sort: { createdAt: -1 } });
-  },
+    // Show newest trips at the top
+    return Trips.find({}, { sort: { createdAt: -1 } });
+  }
 });
 
 Template.userprofile.events({
+  // 'click .deleteMe'(event) {
+  //   Trips.remove(this._id);
+  // },
+  'click .myDetails'(event) {
+    event.preventDefault();
+    Router.go('/trip/view/' + this._id);
+  },
   'click .new-trip'(event) {
     // Prevent default browser form submit
     event.preventDefault();
@@ -211,13 +219,16 @@ Template.userprofile.events({
 Template.userprofile.helpers({
   trips() {
       // Show newest trips at the top
-      return Trips.find({}, { sort: { createdAt: -1 } });
+      return Trips.find({ owner : Meteor.userId()}, { sort: { createdAt: -1 } });
   },
   username() {
     return getUserName();
   },
   picture() {
     return getImageUrl();
+  },
+  hasTrips() {
+    return (Trips.find({ owner : Meteor.userId()}).fetch().length > 0);
   }
 });
 
@@ -269,7 +280,6 @@ Template.tripEdit.onRendered(function(){
     this.state.set('selectedDay', 0);
     $('.collapsible').collapsible();
     $('select').material_select();
-
 });
 
 Template.tripEdit.events({
@@ -365,7 +375,6 @@ Template.tripEdit.events({
             });
         }
     }
-
 });
 
 Template.eventEdit.onRendered(function(){
@@ -388,4 +397,21 @@ Template.tripEdit.events({
         console.log('mudou categoria');
         Session.set('selectedEventCategory', $('#eventCategory').val());
     },
+});
+
+// Trip Details JS
+Template.tripDetail.onRendered(function() {
+  $('.collapsible').collapsible();
+});
+
+Template.tripDetail.helpers({
+  userOwnsTrip() {
+    return (Meteor.userId() == Trips.findOne({_id: this._id}).owner);
+  }
+});
+
+Template.tripDetail.events({
+  'click .editTrip'(event) {
+    Router.go('/trip/edit/' + this._id);
+  },
 });
