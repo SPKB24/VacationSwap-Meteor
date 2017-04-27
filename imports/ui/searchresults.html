@@ -1,122 +1,116 @@
 <template name="search">
+  {{> header_search}}
 
-  {{> header}}
+  <main>
+    <div class="row container">
+      <!-- <div class="input-field col s12 " >
+            <input placeholder="Search here" id="search_location" type="text" class="validate">
+            <label for="first_name">First Name</label>
+      </div> -->
 
-  <div class="row container">
-    <!-- <div class="input-field col s12 " >
-          <input placeholder="Search here" id="search_location" type="text" class="validate">
-          <label for="first_name">First Name</label>
-    </div> -->
+      <!-- {{> search_page_bar}} -->
 
-    {{> search_page_bar}}
-
-    <div class="col s12">
-      <div class="row">
-        <div class="col s4 m4">
-          <div class="card">
-            <div class="card-image">
-              <img src="http://www.mrwallpaper.com/wallpapers/boston-massachusetts-1920x1080.jpg">
-              <span class="card-title">Boston</span>
+      <div class="col s12">
+        <div class="row">
+          <div class="col s4 m4">
+            <div class="card">
+              <div class="card-image">
+                <img src="http://www.mrwallpaper.com/wallpapers/boston-massachusetts-1920x1080.jpg">
+                <span class="card-title">Boston</span>
+              </div>
+              <div class="card-content">
+                <p>{{params}}</p>
+              </div>
+              <div class="card-action">
+                <a href="#">This is a link</a>
+              </div>
             </div>
-            <div class="card-content">
-              <p>{{params}}</p>
+          </div>
+
+          <div class="col s4 m4">
+            <div class="card">
+              <div class="card-image">
+                <img src="http://www.mrwallpaper.com/wallpapers/downtown-seattle-night-1920x1080.jpg">
+                <span class="card-title">Seattle</span>
+              </div>
+              <div class="card-content">
+                <p>Seattle info here</p>
+              </div>
+              <div class="card-action">
+                <a href="#">This is a link</a>
+              </div>
             </div>
-            <div class="card-action">
-              <a href="#">This is a link</a>
+          </div>
+
+          <div class="col s4 m4">
+            <div class="card">
+              <div class="card-image">
+                <img src="http://res.cloudinary.com/simpleview/image/upload/v1444935655/clients/houston/DOWNTOWN_TRAFFIC_NIGHT_2_dc3b7da8-0697-4fb2-a1cf-344fa32bd2db.jpg">
+                <span class="card-title">Houston</span>
+              </div>
+              <div class="card-content">
+                <p>Houston info here</p>
+              </div>
+              <div class="card-action">
+                <a href="#">This is a link</a>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="col s4 m4">
-          <div class="card">
-            <div class="card-image">
-              <img src="http://www.mrwallpaper.com/wallpapers/downtown-seattle-night-1920x1080.jpg">
-              <span class="card-title">Seattle</span>
+        <div class="row">
+          <div class="col s4 m4">
+            <div class="card">
+              <div class="card-image">
+                <img src="http://4.bp.blogspot.com/-YnMRRkcIjkQ/UoXkBRVg_zI/AAAAAAAAbLU/EOFRoFxqapo/s1920/Portland-Head-Light-Cape-Elizabeth-1080.jpg">
+                <span class="card-title">Portland</span>
+              </div>
+              <div class="card-content">
+                <p>Portland info here</p>
+              </div>
+              <div class="card-action">
+                <a href="#">This is a link</a>
+              </div>
             </div>
-            <div class="card-content">
-              <p>Seattle info here</p>
+          </div>
+
+          <div class="col s4 m4">
+            <div class="card">
+              <div class="card-image">
+                <img src="http://eskipaper.com/images/miami-wallpaper-6.jpg">
+                <span class="card-title">Miami</span>
+              </div>
+              <div class="card-content">
+                <p>Miami info here</p>
+              </div>
+              <div class="card-action">
+                <a href="#">This is a link</a>
+              </div>
             </div>
-            <div class="card-action">
-              <a href="#">This is a link</a>
+          </div>
+
+          <div class="col s4 m4">
+            <div class="card">
+              <div class="card-image">
+                <img src="http://www.mrwallpaper.com/wallpapers/las-vegas-strip-1920x1080.jpg">
+                <span class="card-title">Las Vegas</span>
+              </div>
+              <div class="card-content">
+                <p>Las Vegas info here</p>
+              </div>
+              <div class="card-action">
+                <a href="#">This is a link</a>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="col s4 m4">
-          <div class="card">
-            <div class="card-image">
-              <img src="http://res.cloudinary.com/simpleview/image/upload/v1444935655/clients/houston/DOWNTOWN_TRAFFIC_NIGHT_2_dc3b7da8-0697-4fb2-a1cf-344fa32bd2db.jpg">
-              <span class="card-title">Houston</span>
-            </div>
-            <div class="card-content">
-              <p>Houston info here</p>
-            </div>
-            <div class="card-action">
-              <a href="#">This is a link</a>
-            </div>
-          </div>
-        </div>
+      <!-- </div>
+      <div class="col s6"> -->
+
       </div>
-
-      <div class="row">
-        <div class="col s4 m4">
-          <div class="card">
-            <div class="card-image">
-              <img src="http://4.bp.blogspot.com/-YnMRRkcIjkQ/UoXkBRVg_zI/AAAAAAAAbLU/EOFRoFxqapo/s1920/Portland-Head-Light-Cape-Elizabeth-1080.jpg">
-              <span class="card-title">Portland</span>
-            </div>
-            <div class="card-content">
-              <p>Portland info here</p>
-            </div>
-            <div class="card-action">
-              <a href="#">This is a link</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col s4 m4">
-          <div class="card">
-            <div class="card-image">
-              <img src="http://eskipaper.com/images/miami-wallpaper-6.jpg">
-              <span class="card-title">Miami</span>
-            </div>
-            <div class="card-content">
-              <p>Miami info here</p>
-            </div>
-            <div class="card-action">
-              <a href="#">This is a link</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col s4 m4">
-          <div class="card">
-            <div class="card-image">
-              <img src="http://www.mrwallpaper.com/wallpapers/las-vegas-strip-1920x1080.jpg">
-              <span class="card-title">Las Vegas</span>
-            </div>
-            <div class="card-content">
-              <p>Las Vegas info here</p>
-            </div>
-            <div class="card-action">
-              <a href="#">This is a link</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    <!-- </div>
-    <div class="col s6"> -->
-
     </div>
-  </div>
+  </main>
 
   {{> footer}}
-</template>
-
-<template name="search_page_bar">
-    <div class="input-field center-align col s10 push-s1">
-      <input class="" id="search_page_top_bar" placeholder="Search for a location" type="text" style="padding-left: 20px;">
-    </div>
-    <!-- <a id='searchBtn' href="/search" class="waves-effect waves-light btn-flat btn-large col s1"><i id="searchIcon" class="material-icons center white-text">search</i></a> -->
 </template>
