@@ -28,6 +28,7 @@
           <li class="header-nav nav-item"><a style="cursor:text"></a></li>
           <li class="header-nav nav-item" id="headerProfile"><a href="/userprofile">My Profile</a></li>
         {{/if}}
+        <li class="header-nav nav-item" id="headerSignin"><a href="#">{{> loginButtons}}</a></li>
       </ul>
     </div>
   </nav>
@@ -36,8 +37,8 @@
 
 <template name="search_page_bar">
   <li class="grey darken-3" id="search_page_bar_css" >
-    <div class="hoverable input-field waves-effect waves-light" id="search_page_bar_css">
-      <input class="" id="search_page_top_bar" placeholder="Search for a location" type="text" style="padding-left: 20px;">
+    <div class=" input-field waves-effect waves-light" id="search_page_bar_css">
+      <input class="" id="search_page_top_bar" placeholder="Search for a location" type="text" style="padding-right: 0; margin-right: 300px">
     </div>
     <!-- <a id='searchBtn' href="/search" class="waves-effect waves-light btn-flat btn-large col s1"><i id="searchIcon" class="material-icons center white-text">search</i></a> -->
   </li>
