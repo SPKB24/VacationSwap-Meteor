@@ -160,7 +160,7 @@ Template.googleSearchBar.rendered = function() {
         // Optional code for getting address info
         var postCode = extractFromAdress(place.address_components, "postal_code");
         var street = extractFromAdress(place.address_components, "route");
-        var town = extractFromAdress(place.address_components, "locality");
+        var city = extractFromAdress(place.address_components, "locality");
         var country = extractFromAdress(place.address_components, "country");
         var state = extractFromAdress(place.address_components, "administrative_area_level_1");
 
@@ -168,37 +168,16 @@ Template.googleSearchBar.rendered = function() {
         var long = place.geometry.location.lng();
 
         // Create search url
-        console.log(town);
+        console.log(city);
         console.log(state);
-        Router.go('/search?city=' + town + '&state=' + state);
-
-        var buildPlaceSearch = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?" +
-        "location=" + lat + "," + long + "&radius=500&&" +
-        "key=AIzaSyCO9_fZmjH5p9XEs43MA_NG4ZEnicbRGHM";
-
-        // Need to use crossorigin to fix the "No Access-Control-Allow-Origin header
-        // is present on the requested resource" shit error
-        var testo = "https://crossorigin.me/" + buildPlaceSearch;
-        var photoReference;
-        var photoReferenceID;
-
-        $.getJSON(testo, function(data) {
-          // console.log(data);
-          photoReference = data;
-          photoReferenceID = photoReference.results[0].photos[0].photo_reference;
-          console.log(photoReferenceID);
-          var photoLink = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" + photoReferenceID
-          + "&key=AIzaSyCO9_fZmjH5p9XEs43MA_NG4ZEnicbRGHM"
-          // Actual link to photo
-          console.log(photoLink);
-        });
+        Router.go('/search?location=' + city + ', ' + state);
       });
     }
   );
 };
 
 
-Template.search_page_bar.rendered = function() {
+Template.search_results_bar.rendered = function() {
   GoogleMaps.init({
             'key': Meteor.settings.public.googleApiKey,
             'language': 'en',
@@ -229,7 +208,7 @@ Template.search_page_bar.rendered = function() {
         // Optional code for getting address info
         var postCode = extractFromAdress(place.address_components, "postal_code");
         var street = extractFromAdress(place.address_components, "route");
-        var town = extractFromAdress(place.address_components, "locality");
+        var city = extractFromAdress(place.address_components, "locality");
         var country = extractFromAdress(place.address_components, "country");
         var state = extractFromAdress(place.address_components, "administrative_area_level_1");
 
@@ -237,19 +216,81 @@ Template.search_page_bar.rendered = function() {
         var long = place.geometry.location.lng();
 
         // Create search url
-        console.log(town);
+        console.log(city);
         console.log(state);
-        Router.go('/search?city=' + town + '&state=' + state);
+        Router.go('/search?location=' + city + ', ' + state);
       });
     }
   );
 };
 
+Template.search.onRendered(function(){
+  var searchLocation;
+
+  // Do something to return true if trips found
+  if (Router.current().params.query.custom) {
+    searchLocation = Router.current().params.query.custom;
+  } else if (Router.current().params.query.location) {
+    searchLocation = Router.current().params.query.location;
+  } else {
+    $("#search_page_top_bar").val("Invalid Search");
+  }
+
+  $("#search_page_top_bar").val(searchLocation);
+});
+
 Template.search.helpers({
-  params() {
-    console.log(Router.current().params);
-    return town;
+  resultsCount() {
+    var searchLocation;
+
+    // Do something to return true if trips found
+    if (Router.current().params.query.custom) {
+      searchLocation = Router.current().params.query.custom;
+    } else if (Router.current().params.query.location) {
+      searchLocation = Router.current().params.query.location;
+    } else {
+      return "(" + 0 + ")";
+    }
+
+    return "(" + (Trips.find({ location : searchLocation }).fetch().length) + ")";
   },
+  resultsFound() {
+    var searchLocation;
+
+    // Do something to return true if trips found
+    if (Router.current().params.query.custom) {
+      searchLocation = Router.current().params.query.custom;
+    } else if (Router.current().params.query.location) {
+      searchLocation = Router.current().params.query.location;
+    } else {
+      return false;
+    }
+
+    console.log("Searching for: " + searchLocation);
+    console.log("Found " + Trips.find({ location : searchLocation}).fetch().length + " trips");
+
+    return (Trips.find({ location : searchLocation }).fetch().length > 0);
+  },
+  trips() {
+    var searchLocation;
+
+    // Do something to return true if trips found
+    if (Router.current().params.query.custom) {
+      searchLocation = Router.current().params.query.custom;
+    } else if (Router.current().params.query.location) {
+      searchLocation = Router.current().params.query.location;
+    } else {
+      return false;
+    }
+
+    return Trips.find({ location : searchLocation }, { sort: { createdAt: -1 } });
+  }
+});
+
+Template.search.events({
+  'click .card'(event) {
+    Router.go('/trip/view/' + this._id);
+  }
 });
 
 Template.dashboard.helpers({
@@ -260,14 +301,18 @@ Template.dashboard.helpers({
 });
 
 Template.userprofile.events({
-  'click .deleteMe'(event) {
+  'click .tripDelete'(event) {
     if (confirm("Are you sure?")) {
       Trips.remove(this._id);
     }
   },
-  'click .myDetails'(event) {
+  'click .tripView'(event) {
     event.preventDefault();
     Router.go('/trip/view/' + this._id);
+  },
+  'click .tripEdit'(event) {
+    event.preventDefault();
+    Router.go('/trip/edit/' + this._id);
   },
   'click .new-trip'(event) {
     // Prevent default browser form submit
@@ -310,8 +355,8 @@ Template.userprofile.events({
 
 Template.userprofile.helpers({
   trips() {
-      // Show newest trips at the top
-      return Trips.find({ owner : Meteor.userId()}, { sort: { createdAt: -1 } });
+    // Show newest trips at the top
+    return Trips.find({ owner : Meteor.userId()}, { sort: { createdAt: -1 } });
   },
   username() {
     return getUserName();
@@ -321,6 +366,36 @@ Template.userprofile.helpers({
   },
   hasTrips() {
     return (Trips.find({ owner : Meteor.userId()}).fetch().length > 0);
+  }
+});
+
+Template.userTrips.rendered = function() {
+  // $('.dropdown-button').dropdown({
+  //     inDuration: 300,
+  //     outDuration: 225,
+  //     belowOrigin: false, // Displays dropdown below the button
+  //   }
+  // );
+  $('.dropdown-button').dropdown({
+      inDuration: 100,
+      outDuration: 225,
+      constrainWidth: false, // Does not change width of dropdown to that of the activator
+      hover: false, // Activate on hover
+      gutter: 0, // Spacing from edge
+      belowOrigin: false, // Displays dropdown below the button
+      alignment: 'left', // Displays dropdown with edge aligned to the left of button
+      stopPropagation: false // Stops event propagation
+    }
+  );
+}
+
+Template.userTrips.helpers({
+  dropdownID: function() {
+    return "dropdown-" + this._id;
+  },
+  hasLocation: function() {
+    var theLocation = Trips.findOne({_id: this._id}).location;
+    return (theLocation !== undefined && theLocation !== "");
   }
 });
 
