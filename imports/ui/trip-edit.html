@@ -8,7 +8,7 @@
                     <div class="card-image">
                         <img src="http://www.thewallpapers.org/photo/44523/Background_Grey.jpg" style="height: 100px;">
                         <span class="card-title">
-                            <a class="editTitle white-text waves-effect waves-teal btn-flat btn-large"><i class="material-icons right">edit</i>{{title}}</a>
+                            <a class="editTitle white-text waves-effect waves-teal btn-flat btn-large"><i class="material-icons right">edit</i>{{title}}{{#if hasLocation}} - {{location}}{{/if}}</a>
                         </span>
                     </div>
                     <div class="card-content">
@@ -60,10 +60,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="input-field col s12">
-                            <input id="startDate" type="text" class="validate" value="{{startDate}}">
-                            <label for="startDate" class="active">Trip Start Date</label>
-                        </div>
+                        {{> tripEditLocationBar}}
                     </div>
                 </form>
             </div>
@@ -128,4 +125,10 @@
             <a class="deleteEvent modal-action modal-close waves-effect waves-green btn-flat"><i class="material-icons right">delete</i>Delete Event</a>
         </div>
     </div>
+</template>
+
+<template name="tripEditLocationBar">
+  <div class="input-field col s12">
+    <input class="" id="tripEditSearch" placeholder="Search for a location" type="text" style="padding-right: 0;">
+  </div>
 </template>

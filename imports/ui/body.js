@@ -47,6 +47,7 @@ Template.header.events({
     // Insert a task into the collection
     Trips.insert({
         title: 'My Trip',
+        location: '',
         startDate: '',
         picture: '',
         createdAt: new Date(), // current time
@@ -74,6 +75,58 @@ Template.homepage.events({
     }
   }
 });
+
+Template.tripEditLocationBar.rendered = function() {
+  console.log("Rendering");
+  GoogleMaps.init({
+            'key': Meteor.settings.public.googleApiKey,
+            'language': 'en',
+            'libraries': 'places'
+    },
+    function () {
+
+      // input = document.getElementById('search_location');
+      // autocomplete = new google.maps.places.Autocomplete(input);
+      var autocomplete = new google.maps.places.Autocomplete(
+        (document.getElementById('tripEditSearch')),{types: ['geocode'] }
+      );
+
+      console.log("Rendering");
+
+      // When the user selects an address from the dropdown,
+      google.maps.event.addListener(autocomplete, 'place_changed', function() {
+
+        // Get the place details from the autocomplete object.
+        const place = autocomplete.getPlace();
+
+        console.log(place);
+
+        function extractFromAdress(components, type){
+          for (var i=0; i<components.length; i++)
+              for (var j=0; j<components[i].types.length; j++)
+                  if (components[i].types[j]==type) return components[i].long_name;
+          return "";
+        }
+
+        // Optional code for getting address info
+        var postCode = extractFromAdress(place.address_components, "postal_code");
+        var street = extractFromAdress(place.address_components, "route");
+        var town = extractFromAdress(place.address_components, "locality");
+        var country = extractFromAdress(place.address_components, "country");
+        var state = extractFromAdress(place.address_components, "administrative_area_level_1");
+
+        var lat = place.geometry.location.lat();
+        var long = place.geometry.location.lng();
+
+        // Create search url
+        console.log(town);
+        console.log(state);
+
+        document.getElementById('tripEditSearch').value = town + ", " + state;
+      });
+    }
+  );
+};
 
 Template.googleSearchBar.rendered = function() {
   GoogleMaps.init({
@@ -232,6 +285,7 @@ Template.userprofile.events({
     // Insert a task into the collection
     Trips.insert({
         title: 'My Trip',
+        location: '',
         startDate: '',
         picture: '',
         createdAt: new Date(), // current time
@@ -328,7 +382,7 @@ Template.tripEdit.events({
         Trips.update(this._id, {
             $set: {
                 title: $('#title').val(),
-                startDate: $('#startDate').val()
+                location: $('#tripEditSearch').val()
             },
         });
     },
@@ -415,6 +469,13 @@ Template.tripEdit.events({
     }
 });
 
+Template.tripEdit.helpers({
+  hasLocation: function() {
+    var theLocation = Trips.findOne({_id: this._id}).location;
+    return (theLocation !== undefined && theLocation !== "");
+  }
+});
+
 Template.eventEdit.onRendered(function(){
     new Pikaday({ field: $('#startDate')[0] });
     new Pikaday({ field: $('#eventStartDate')[0] });
@@ -445,6 +506,10 @@ Template.tripDetail.onRendered(function() {
 Template.tripDetail.helpers({
   userOwnsTrip() {
     return (Meteor.userId() == Trips.findOne({_id: this._id}).owner);
+  },
+  hasLocation: function() {
+    var theLocation = Trips.findOne({_id: this._id}).location;
+    return (theLocation !== undefined && theLocation !== "");
   }
 });
 
