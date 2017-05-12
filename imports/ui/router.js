@@ -1,3 +1,5 @@
+import { Trips } from '../api/trips.js';
+
 // Router.onRun(function(){
 //   console.log('onRun', this.current().route.getName());
 //   this.next();
@@ -39,4 +41,20 @@ Router.route('/search', function() {
 
 Router.route('/userprofile', function() {
  this.render('userprofile');
+});
+
+Router.route('/trip/edit/:_id', function () {
+    this.render('tripEdit', {
+        data: function () {
+            return Trips.findOne({_id: this.params._id});
+        }
+    });
+});
+
+Router.route('/trip/view/:_id', function () {
+    this.render('tripDetail', {
+        data: function () {
+            return Trips.findOne({_id: this.params._id});
+        }
+    });
 });

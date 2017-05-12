@@ -1,0 +1,50 @@
+<template name="tripDetail">
+
+  {{> header}}
+
+  <main class="container" style="z-index:auto">
+    <div class="row">
+        <div class="col s12 m12">
+            <div class="card">
+                <div class="card-image">
+                    <img src="http://www.thewallpapers.org/photo/44523/Background_Grey.jpg" style="height: 100px;">
+                    <span class="card-title">
+                        <span class="white-text waves-effect waves-teal btn-flat btn-large">{{title}}{{#if hasLocation}} - {{location}}{{/if}}</span>
+                    </span>
+                </div>
+                <div class="card-content">
+                    {{#if userOwnsTrip}}
+                      <a class="editTrip center waves-effect waves-light btn" style="margin-bottom: 10px;"><i class="material-icons left">edit</i>Edit this trip</a>
+                      <a class="deleteMe center waves-effect waves-light btn red" style="margin-bottom: 10px;"><i class="material-icons left">delete</i>Delete This Trip</a>
+                    {{/if}}
+                    <ul class="collapsible popout" data-collapsible="accordion">
+                        {{#each days}}
+                        <li>
+                            <div class="collapsible-header" data-daynumber="{{@index}}"><i class="material-icons">date_range</i>{{date}}</div>
+                            <div class="collapsible-body">
+                                <ul class="collection">
+                                    {{#let dayNumber=@index}}
+                                    {{#each this.events}}
+                                    <!-- {{> eventEdit dayNumber=dayNumber eventId=@index}} -->
+                                        <li class="collection-item avatar">
+                                          <i class="material-icons circle green">folder</i>
+                                          <span class="title">{{title}}</span>
+                                          <p>{{notes}}</p>
+                                        </li>
+                                    {{/each}}
+                                    {{/let}}
+                                </ul>
+
+                            </div>
+                        </li>
+                        {{/each}}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  </main>
+
+  {{> footer}}
+</template>

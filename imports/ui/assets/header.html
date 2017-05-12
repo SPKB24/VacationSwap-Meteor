@@ -1,10 +1,10 @@
 <template name="header">
 
-  <nav id="header" class="lighten-1" role="navigation">
+  <nav id="header" style="z-index: 10" class="lighten-1" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo">VacationSwap</a>
       <ul class="right hide-on-med-and-down headerContent">
         {{#if currentUser}}
-          <li class="header-nav nav-item" style="background: rgba(255, 255, 255, 0.8);"><a style="color: black;" href="/search">New Itinerary</a></li>
+          <li class="header-nav nav-item grey darken-3" ><a id="newItinerary" href="#">New Trip</a></li>
           <li class="header-nav nav-item"><a style="cursor:text"></a></li>
           <li class="header-nav nav-item" id="headerProfile"><a href="/userprofile">My Profile</a></li>
         {{/if}}
@@ -13,4 +13,33 @@
     </div>
   </nav>
 
+</template>
+
+<template name="header_search">
+
+  <nav id="header" class="lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo">VacationSwap</a>
+      <ul class="right hide-on-med-and-down headerContent">
+
+        {{> search_page_bar}}
+
+        {{#if currentUser}}
+          <li class="header-nav nav-item" ><a href="/search">New Itinerary</a></li>
+          <li class="header-nav nav-item"><a style="cursor:text"></a></li>
+          <li class="header-nav nav-item" id="headerProfile"><a href="/userprofile">My Profile</a></li>
+        {{/if}}
+        <li class="header-nav nav-item" id="headerSignin"><a href="#">{{> loginButtons}}</a></li>
+      </ul>
+    </div>
+  </nav>
+
+</template>
+
+<template name="search_page_bar">
+  <li class="grey darken-3" id="search_page_bar_css" >
+    <div class=" input-field waves-effect waves-light" id="search_page_bar_css">
+      <input class="" id="search_page_top_bar" placeholder="Search for a location" type="text" style="padding-right: 0; margin-right: 300px">
+    </div>
+    <!-- <a id='searchBtn' href="/search" class="waves-effect waves-light btn-flat btn-large col s1"><i id="searchIcon" class="material-icons center white-text">search</i></a> -->
+  </li>
 </template>
